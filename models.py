@@ -28,7 +28,7 @@ class Offer(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     cost = Column(Float)
-    description = Column(JSON)
+    description = Column(String)
 
 
 class Order(Base):
