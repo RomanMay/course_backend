@@ -1,0 +1,5 @@
+sqlalchemy
+flask
+flask_cors
+flask_security
+jwt
