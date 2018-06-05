@@ -1,0 +1,166 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a {
+   position: relative;
+   outline: 0;
+   text-decoration: none;
+
+}
+li{
+	text-decoration: none;
+}
+body {
+	
+}
+header{
+	position: relative;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+}
+.grid{
+  display: grid;
+}
+.center{
+  text-align: center;
+}
+.logo{
+  padding-bottom: 3%;
+}
+.heightContainer {
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-top: 2%;
+}
+
+.thisContainer {
+    width: 1170px;
+    margin: auto;
+    padding-left: 3%;
+    padding-right: 3%;
+    box-sizing: border-box;
+}
+.landingPage {
+    width: 100%;
+}
+
+.abonm{
+  background-color: #fff;
+  opacity: .5;
+  text-align: center;
+  margin: 0 auto;
+  
+}
+}
+
+.center{
+  text-align: center;
+}
+nav .menu{
+  grid-template-columns: repeat(3,1fr); 
+  
+  
+}
+.menu a{
+  background: #fff;
+  opacity: .5;
+}
+.menu a p{
+  text-transform: uppercase;
+  color: #000;
+  font-size: 2em;
+  font-family: 'Duru Sans', sans-serif;
+  
+}
+.menu{
+  width: 100%;
+  margin: 0 auto;
+}
+h2{
+  font-family: 'Duru Sans', sans-serif;
+}
+h1{
+  font-family: "Open Sans";
+  font-size: 1.5em;
+  font-weight: 800;
+}
+.hhh p{
+  font-family: "Open Sans";
+  font-size: 0.8em;
+}
+.hhh{
+  padding: 2% 2%;
+}
+.personalCaby1 .abonm{
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: repeat(6,1fr);
+}
+.abonm{
+  padding-top:5%; 
+}
+.photo{
+  padding: 8% 0;
+  margin-left: 25%;
+}
+.abonm .photo:nth-child(1){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(2){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(3){
+  grid-column:4 / 5;
+}
+.abonm .photo:nth-child(4){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(5){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(6){
+  grid-column:4 / 5;
+}
+.abonm .photo:nth-child(7){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(8){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(9){
+  grid-column:4 / 5;
+}
+.abonm .photo:nth-child(10){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(11){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(12){
+  grid-column:4 / 5;
+}
+.abonm .photo:nth-child(13){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(14){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(15){
+  grid-column:4 / 5;
+}
+.abonm .photo:nth-child(16){
+  grid-column:1 / 2;
+}
+.abonm .hhh:nth-child(17){
+  grid-column:2 / 5;
+}
+.abonm button .www:nth-child(18){
+  grid-column:4 / 5;
+}
+button{
+  width: 200px;
+  height: 60px;
+  font-family: "Open Sans";
+  font-size: 1.3em
+}

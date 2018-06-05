@@ -1,0 +1,66 @@
+footer {
+	background: #000;
+	height: 450px;
+}
+.footmenu {
+	flex-basis: 200px;
+	font-weight: 100;
+}
+.footmenu_row {
+	display: flex;
+	padding-top: 100px;
+	justify-content: flex-end;	
+	flex-direction: row;
+	font-weight: 200;
+
+}
+.footmenu_item {
+	flex: 1;
+	 padding: 12px;
+	 color: #fff;
+	 font-family: "Open Sans", sans-serif;
+	font-weight: 200;
+	 text-align: center;
+	 vertical-align: middle;
+	 font-size: 1.4em;
+  
+  }
+  .footmenu_item1 {
+	flex: 1;
+	 padding: 12px;
+	 color: #fff;
+	 text-transform: uppercase;
+	 font-family: "Stencil";
+	 font-weight: bold;
+	 font-size: 2em;
+  
+  }
+hr{
+	margin: 0 auto;
+	margin-top: 5%;
+}
+.footmenu_item a {
+	text-decoration: none;
+	color: #fff;
+}
+.footmenu_item1 a {
+	text-decoration: none;
+	color: #fff;
+	
+}
+.social {
+	margin-top: 100px;
+	text-align: center;
+}
+.social a{
+	padding-left: 3%;
+}
+.note {
+	text-align: center;
+	font-family: "uni sans caps";
+	font-size: 180%;
+	color: #727272; 
+	text-transform: uppercase;
+	padding-top: 2%;
+	font-weight: 200;
+}
