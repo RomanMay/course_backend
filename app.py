@@ -5,14 +5,20 @@ import datetime
 from models import User, Offer, Order
 from flask_cors import CORS
 from database import db_session, init_db
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates", static_url_path="/static")
 
 app.config['SECRET_KEY'] = 'super-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 CORS(app)
+
+
+@app.route('/')
+def index():
+    print(app.static_url_path)
+    return render_template("index.html")
 
 
 def login_required(f):
