@@ -23,6 +23,10 @@ def index():
 def login():
     return render_template('log_in.html')
 
+@app.route('/add_offer')
+def add_offer():
+    return render_template('add_form.html')
+
 @app.route('/personal_room')
 def personal_room():
     return render_template('pc1.html')
