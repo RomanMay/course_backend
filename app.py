@@ -5,15 +5,27 @@ import datetime
 from models import User, Offer, Order
 from flask_cors import CORS
 from database import db_session, init_db
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from functools import wraps
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
 
 app.config['SECRET_KEY'] = 'super-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 CORS(app)
 
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/login')
+def login():
+    return render_template('log_in.html')
+
+@app.route('/personal_room')
+def personal_room():
+    return render_template('pc1.html')
 
 def login_required(f):
     @wraps(f)
@@ -30,29 +42,6 @@ def login_required(f):
         return f(*args, **kwargs)
 
     return decorated
-
-
-@app.route('/login', methods=['POST'])
-def login():
-    username = request.form['username']
-    password = request.form['password']
-    registered_user = User.query.filter_by(username=username, password=password).first()
-    if not registered_user:
-        return 'Error login'
-    token = jwt.encode(
-        {
-            'id': registered_user.id,
-            'email': registered_user.email,
-            'user': username,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=3600)
-        },
-        app.config['SECRET_KEY'])
-    return jsonify(
-        {
-            'token': token.decode('UTF-8'),
-            'id': registered_user.id,
-            'email': registered_user.email
-        })
 
 
 @app.route('/is_login', methods=['GET'])
