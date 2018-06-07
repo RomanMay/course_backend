@@ -1,12 +1,8 @@
-import json
-
-import jwt
-import datetime
+from forms import RegForm
 from models import User, Offer, Order
 from flask_cors import CORS
 from database import db_session, init_db
-from flask import Flask, request, jsonify, render_template
-from functools import wraps
+from flask import Flask, request, render_template, redirect
 
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
 
@@ -19,9 +15,18 @@ CORS(app)
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('log_in.html')
+    form = RegForm()
+    data_valid = form.validate()
+    print(data_valid)
+    if data_valid:
+        db_session.add(User(form.username.data, form.password.data, form.email.data, 'user'))
+        db_session.commit()
+        return redirect('/')
+    return render_template('log_in.html', form=form)
+
 
 @app.route('/add_offer')
 def add_offer():
@@ -31,35 +36,15 @@ def add_offer():
 def personal_room():
     return render_template('pc1.html')
 
-def login_required(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        token = request.args.get('token')
-        if not token:
-            token = request.form['token']
-        if not token:
-            return jsonify({'message': 'Token is missing!'})
-        try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
-        except:
-            return jsonify({'message': 'Token is invalid'})
-        return f(*args, **kwargs)
 
-    return decorated
-
-
-@app.route('/is_login', methods=['GET'])
-@login_required
-def is_login():
-    return 'ok'
-
-
-@app.route('/reg', methods=['POST'])
+@app.route('/reg', methods=['GET', 'POST'])
 def register():
-    user = User(request.form['username'], request.form['password'], request.form['email'])
-    db_session.add(user)
-    db_session.commit()
-    return 'ok'
+    form = RegForm()
+    if form.validate_on_submit():
+        db_session.add(User(form.username.data, form.password.data, form.email.data, 'user'))
+        db_session.commit()
+        return redirect('/')
+    return render_template('log_in.html', form=form)
 
 
 @app.teardown_appcontext

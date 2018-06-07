@@ -5,10 +5,11 @@ from sqlalchemy import String, Integer, Column, Float, JSON
 class User(Base):
     __tablename__ = 'user'
 
-    def __init__(self, username, password, email):
+    def __init__(self, username, password, email, role):
         self.username = username
         self.email = email
         self.password = password
+        self.role = role
 
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
