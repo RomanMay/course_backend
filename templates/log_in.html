@@ -1,118 +1,119 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>log_in</title>
-	<link rel="stylesheet" href="static/css/log_in.css">
-	<link rel="stylesheet" href="static/css/footer.css">
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Unica+One|Open+Sans:600" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>log_in</title>
+    <link rel="stylesheet" href="static/css/log_in.css">
+    <link rel="stylesheet" href="static/css/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Unica+One|Open+Sans:600" rel="stylesheet">
 
 </head>
 <body>
-	<header class ="header" style="background-image: url(static/img/back_log_in.png);">
-		<div class="headerContainer heightContainer thisContainer center">
-			<div class="logo">
-			<a href="index.html"><img src="static/img/logo.png" alt=""></a>
-			<h1>ВАШ личный кабинет</h1>
-			<h2>всегда будьте 
-			в курсе событий</h2>
+<header class="header" style="background-image: url(static/img/back_log_in.png);">
+    <div class="headerContainer heightContainer thisContainer center">
+        <div class="logo">
+            <a href="index.html"><img src="static/img/logo.png" alt=""></a>
+            <h1>ВАШ личный кабинет</h1>
+            <h2>всегда будьте
+                в курсе событий</h2>
 
 
-	<div class="login-wrap">
-	<div class="login-html">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Войти</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Зарегистрироваться</label>
-		<div class="login-form">
-			<form action="" method="post" name="login">
-			<div class="sign-in-htm">
-				<div class="group">
-					<label for="user" class="label">Логин</label>
-					{{ form.username(class_="input") }}
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Пароль</label>
-					{{ form.password(class_="input") }}
-				</div>
-				<div class="group">
-					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Запомнить меня</label>
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Войти">
-				</div>
-				<div class="hr"></div>
-				<div class="foot-lnk">
-					<a href="#forgot">Забыли пароль?</a>
-				</div>
-			</div>
-			</form>
-			<form action="" method="post" name="login">
-			<div class="sign-up-htm">
-				<div class="group">
-					<label for="user" class="label">Имя</label>
-					{{ form.username(class_="input") }}
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Пароль</label>
-					{{ form.password(class_="input") }}
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Повторите пароль</label>
-					{{ form.confirm(class_="input") }}
-				</div>
-				<div class="group">
-					<label for="pass" class="label">E-mail </label>
-					{{ form.email(class_="input") }}
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Зарегистрироваться">
-				</div>
-				<div class="hr"></div>
-				<div class="foot-lnk">
-					<label for="tab-1">Уже зарегистрированы?</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-		</div>
-		</div>
-	</header>
-	<footer>
-		<div class="thisContainer">
-			<div class="footmenu">
-				<div class="footmenu_row">
-					<div class="footmenu_item1">
-						<a href="index.html">power gym</a>
-					</div>
-					
-					<div class="footmenu_item">
-						<a href="#">О нас</a>
-					</div>
-					
-					<div class="footmenu_item" >
-						<a href="#">Поддержка</a>
-					</div>
-					
-					<div class="footmenu_item">
-						<a href="#">Форум</a>
-					</div>
-					
-					<div class="footmenu_item">
-						<a href="#">Обратная связь</a>
-					</div>
-				</div>
-			</div>
-		
-					<hr size="3" width="1085" color="#fff">
-			<div class="social">
-				<a href="#"><img src="static/img/facebook.png" alt=""></a>
-				<a href="#"><img src="static/img/Google.png" alt=""></a>
-				<a href="#"><img src="static/img/Instagram.png" alt=""></a>
-				<a href="#"><img src="static/img/vk.png" alt=""></a>
-			</div>
-			<div class="note">all rights reserved</div>
-		</div>
-	</footer>
+            <div class="login-wrap">
+                <div class="login-html">
+                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Войти</label>
+                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Зарегистрироваться</label>
+                    <div class="login-form">
+                        <form action="" method="post" name="login">
+                            <div class="sign-in-htm">
+                                <div class="group">
+                                    <label for="user" class="label">Логин</label>
+                                    {{ form.username(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Пароль</label>
+                                    {{ form.password(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <input id="check" type="checkbox" class="check" checked>
+                                    <label for="check"><span class="icon"></span> Запомнить меня</label>
+                                </div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Войти">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot-lnk">
+                                    <a href="#forgot">Забыли пароль?</a>
+                                </div>
+                            </div>
+                        </form>
+                        <form action="" method="post" name="login">
+                            {{ form.hidden_tag() }}
+                            <div class="sign-up-htm">
+                                <div class="group">
+                                    <label for="user" class="label">Имя</label>
+                                    {{ form.username(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Пароль</label>
+                                    {{ form.password(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">Повторите пароль</label>
+                                    {{ form.confirm(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <label for="pass" class="label">E-mail </label>
+                                    {{ form.email(class_="input") }}
+                                </div>
+                                <div class="group">
+                                    <input type="submit" class="button" value="Зарегистрироваться">
+                                </div>
+                                <div class="hr"></div>
+                                <div class="foot-lnk">
+                                    <label for="tab-1">Уже зарегистрированы?</a>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<footer>
+    <div class="thisContainer">
+        <div class="footmenu">
+            <div class="footmenu_row">
+                <div class="footmenu_item1">
+                    <a href="index.html">power gym</a>
+                </div>
+
+                <div class="footmenu_item">
+                    <a href="#">О нас</a>
+                </div>
+
+                <div class="footmenu_item">
+                    <a href="#">Поддержка</a>
+                </div>
+
+                <div class="footmenu_item">
+                    <a href="#">Форум</a>
+                </div>
+
+                <div class="footmenu_item">
+                    <a href="#">Обратная связь</a>
+                </div>
+            </div>
+        </div>
+
+        <hr size="3" width="1085" color="#fff">
+        <div class="social">
+            <a href="#"><img src="static/img/facebook.png" alt=""></a>
+            <a href="#"><img src="static/img/Google.png" alt=""></a>
+            <a href="#"><img src="static/img/Instagram.png" alt=""></a>
+            <a href="#"><img src="static/img/vk.png" alt=""></a>
+        </div>
+        <div class="note">all rights reserved</div>
+    </div>
+</footer>
 
 </body>
