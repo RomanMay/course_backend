@@ -27,11 +27,11 @@
 			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">Логин</label>
-					{{ form.username }}
+					{{ form.username(class_="input") }}
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Пароль</label>
-					{{ form.password }}
+					{{ form.password(class_="input") }}
 				</div>
 				<div class="group">
 					<input id="check" type="checkbox" class="check" checked>
@@ -50,19 +50,19 @@
 			<div class="sign-up-htm">
 				<div class="group">
 					<label for="user" class="label">Имя</label>
-					{{ form.username }}
+					{{ form.username(class_="input") }}
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Пароль</label>
-					{{ form.password }}
+					{{ form.password(class_="input") }}
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Повторите пароль</label>
-					{{ form.confirm }}
+					{{ form.confirm(class_="input") }}
 				</div>
 				<div class="group">
 					<label for="pass" class="label">E-mail </label>
-					{{ form.email }}
+					{{ form.email(class_="input") }}
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="Зарегистрироваться">
