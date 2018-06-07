@@ -1,0 +1,127 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	
+}
+.label{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: #fff;
+	opacity:1;
+
+}
+.label2{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: #fff;
+	opacity:1;
+	text-align: left;
+
+}
+.label3{
+    font-family: 'Open Sans', sans-serif;
+	font-size: 1em;
+	color: #fff;
+	opacity:1;
+	text-align: right;
+}
+nav .menu{
+	grid-template-columns: repeat(5,1fr);
+}
+.grid{
+	display: grid;
+}
+.center{
+	text-align: center;
+}
+nav{
+	position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+	background-color: rgba(0,0,0,.2);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2% 10%;
+
+}
+
+nav .menu a{
+	color: #fff;
+    display: block;
+    font-size: 1.5em;
+    font-family: "Open sans";
+    font-weight: 600;
+    text-decoration: none;
+
+}
+nav .menu a p{
+	line-height: 100%;
+}
+header{
+
+
+}
+.body{
+    position: relative;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+}
+
+form{
+	text-align: center;
+	padding-top: 10%;
+	margin: 0 auto;
+    height: 600px;
+    width: 500px;
+
+	background-color: rgba(113,113,123,.2);
+    box-shadow:0 12px 15px 0 rgba(113,113,123,.24),0 17px 50px 0 rgba(0,0,255,.19);
+
+
+}
+.container{
+    width:90%;
+
+    margin: 0 auto;
+}
+input{
+    font-size: 2em;
+}
+.input{
+    width: 80%;
+    height: 10%;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+
+}
+.input1{
+    width: 80%;
+    height: 30%;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+    margin-bottom: 10px;
+
+}
+.input2{
+    width: 20%;
+    height: 10%;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid black;
+
+}
+button{
+    margin-top: 5%;
+    width:30%;
+    height:5%;
+}
+
+menu li{
+    color:#fff;
+}
