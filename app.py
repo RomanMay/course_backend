@@ -32,6 +32,26 @@ def login():
 def add_offer():
     return render_template('add_form.html')
 
+@app.route('/all_abonements')
+def all_abonements():
+    return render_template('all_abonements.html')
+
+@app.route('/archive')
+def archive():
+    return render_template('archive.html')
+
+@app.route('/new_abonements')
+def new_abonements():
+    return render_template('new.html')
+
+@app.route('/rejected')
+def rejected():
+    return render_template('rejected.html')
+
+@app.route('/accepted')
+def accepted():
+    return render_template('accepted.html')
+
 @app.route('/personal_room')
 def personal_room():
     return render_template('pc1.html')

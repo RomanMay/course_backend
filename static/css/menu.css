@@ -1,0 +1,40 @@
+.features{
+    width: 15%;
+    float: left;
+    height: 100vh;
+    margin: 0 auto;
+}
+nav .menu{
+	grid-template-rows: repeat(6,1fr);
+}
+.grid{
+	display: grid;
+}
+.center{
+	text-align: center;
+}
+nav{
+	height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 100;
+	background-color: rgba(113,113,123,.7);
+    box-sizing: border-box;
+    padding: 4% 0;
+
+}
+nav .menu a{
+	color: #000;
+    display: block;
+    font-size: 20px;
+    font-family: "Open sans";
+    font-weight: 600;
+    text-decoration: none;
+
+}
+nav .menu a p{
+	line-height: 100%;
+}
+.curent{
+	color: rgba(0,0,255,.4);
+}
