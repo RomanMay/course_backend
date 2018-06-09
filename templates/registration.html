@@ -20,50 +20,26 @@
 
             <div class="login-wrap">
                 <div class="login-html">
-                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Войти</label>
-                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Зарегистрироваться</label>
+                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Зарегистрироваться</label>
+                    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
                     <div class="login-form">
-                        <form action="" method="post" name="login">
-                            {{ form.hidden_tag() }}
-                            <div class="sign-in-htm">
-                                <div class="group">
-                                    <label for="user" class="label">Логин</label>
-                                    {{ form.username(class_="input") }}
-                                </div>
-                                <div class="group">
-                                    <label for="pass" class="label">Пароль</label>
-                                    {{ form.password(class_="input") }}
-                                </div>
-                                <div class="group">
-                                    <input id="check" type="checkbox" class="check" checked>
-                                    <label for="check"><span class="icon"></span> Запомнить меня</label>
-                                </div>
-                                <div class="group">
-                                    <input type="submit" class="button" value="Войти">
-                                </div>
-                                <div class="hr"></div>
-                                <div class="foot-lnk">
-                                    <a href="#forgot">Забыли пароль?</a>
-                                </div>
-                            </div>
-                        </form>
                         <form action="" method="post" name="login">
                             {{ form.hidden_tag() }}
                             <div class="sign-up-htm">
                                 <div class="group">
-                                    <label for="user" class="label">Имя</label>
+                                    <label class="label">Имя</label>
                                     {{ form.username(class_="input") }}
                                 </div>
                                 <div class="group">
-                                    <label for="pass" class="label">Пароль</label>
+                                    <label class="label">Пароль</label>
                                     {{ form.password(class_="input") }}
                                 </div>
                                 <div class="group">
-                                    <label for="pass" class="label">Повторите пароль</label>
+                                    <label class="label">Повторите пароль</label>
                                     {{ form.confirm(class_="input") }}
                                 </div>
                                 <div class="group">
-                                    <label for="pass" class="label">E-mail </label>
+                                    <label class="label">E-mail </label>
                                     {{ form.email(class_="input") }}
                                 </div>
                                 <div class="group">
@@ -71,9 +47,10 @@
                                 </div>
                                 <div class="hr"></div>
                                 <div class="foot-lnk">
-                                    <label for="tab-1">Уже зарегистрированы?</a>
+                                    <a for="tab-1" href="/login">Уже зарегистрированы?</a>
                                 </div>
                             </div>
+                        </form>
                     </div>
                 </div>
             </div>

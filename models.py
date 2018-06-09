@@ -1,8 +1,8 @@
 from database import Base
 from sqlalchemy import String, Integer,Boolean, Column, Float
+from flask_login import UserMixin
 
-
-class User(Base):
+class User(UserMixin,Base):
     __tablename__ = 'user'
 
     def __init__(self, username, password, email, role):
@@ -16,23 +16,6 @@ class User(Base):
     role = Column(String, default="user")
     email = Column(String, unique=True)
     password = Column(String)
-    authenticated = Column(Boolean, default=False)
-
-    def is_active(self):
-        """True, as all users are active."""
-        return True
-
-    def get_id(self):
-        """Return the email address to satisfy Flask-Login's requirements."""
-        return self.id
-
-    def is_authenticated(self):
-        """Return True if the user is authenticated."""
-        return self.authenticated
-
-    def is_anonymous(self):
-        """False, as anonymous users aren't supported."""
-        return False
 
 
 class Offer(Base):

@@ -15,7 +15,7 @@ CORS(app)
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(user_id)
 
 
 @app.route('/')
@@ -27,14 +27,11 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.get(form.username.data)
+        user = User.query.filter_by(username=form.username.data).first()
         if user:
-            user.authenticated = True
-            db_session.add(user)
-            db_session.commit()
-            login_user(user, remember=True)
-        return redirect('/')
-    return render_template('log_in.html', form=form)
+            login_user(user)
+            return redirect('/personal_room')
+    return render_template('login.html', form=form)
 
 
 @app.route('/add_offer')
@@ -43,18 +40,31 @@ def add_offer():
 
 
 @app.route('/personal_room')
+@login_required
 def personal_room():
     return render_template('pc1.html')
 
 
-@app.route('/reg', methods=['GET', 'POST'])
+@app.route('/registration', methods=['GET', 'POST'])
 def register():
     form = RegForm()
     if form.validate_on_submit():
         db_session.add(User(form.username.data, form.password.data, form.email.data, 'user'))
         db_session.commit()
         return redirect('/')
-    return render_template('log_in.html', form=form)
+    return render_template('registration.html', form=form)
+
+
+@app.route('/check_user', methods=['GET'])
+@login_required
+def check_user():
+    return "Hello user: " + str(current_user.username) + " : " + str(current_user.email)
+
+
+@app.route('/check_user_by_id', methods=['GET'])
+def check_user_by_id():
+    username = request.args.get('username')
+    return str(User.query.get(username))
 
 
 @app.route('/logout', methods=['GET'])
