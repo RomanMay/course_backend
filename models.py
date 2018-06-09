@@ -21,15 +21,18 @@ class User(UserMixin,Base):
 class Offer(Base):
     __tablename__ = 'offer'
 
-    def __init__(self, name, cost, description):
+    def __init__(self, name, cost, description, capacity):
         self.name = name
         self.cost = cost
         self.description = description
+        self.capacity = capacity
+
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
-    cost = Column(Float)
-    description = Column(String)
+    cost = Column(Float, nullable=False)
+    capacity = Column(Integer, nullable=False)
+    description = Column(String, nullable=False)
 
 
 class Order(Base):

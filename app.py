@@ -1,16 +1,32 @@
-from forms import RegForm, LoginForm
+from forms import RegForm, LoginForm, OfferForm
 from models import User, Offer, Order
 from flask_cors import CORS
 from database import db_session, init_db
 from flask import Flask, request, render_template, redirect
-from flask_login import LoginManager, UserMixin, login_required, current_user, logout_user, login_user
+from flask_login import LoginManager, login_required, current_user, logout_user, login_user
+from functools import wraps
+
 
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
 login_manager = LoginManager()
 
 app.config['SECRET_KEY'] = 'super-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['admins'] = [
+    'kirill',
+    'romanmay'
+]
 CORS(app)
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated(*args,**kwargs):
+        if current_user.username not in app.config['admins']:
+            return 'You are not admin'
+        else:
+            return f(*args, **kwargs)
+    return decorated
 
 
 @login_manager.user_loader
@@ -34,13 +50,22 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/add_offer')
+@app.route('/add_offer', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def add_offer():
-    return render_template('add_form.html')
+    form = OfferForm()
+    if form.validate_on_submit():
+        offer = Offer.query.filter_by(name=form.name.data).first()
+        if not offer:
+            db_session.add(Offer(form.name.data, form.cost.data, form.description.data, form.capacity.data ))
+            db_session.commit()
+        return redirect('/all_abonements')
+    return render_template('add_offer.html', form=form)
 
 @app.route('/all_abonements')
 def all_abonements():
-    return render_template('all_abonements.html')
+    return render_template('all_abonements.html', offers=Offer.query.all())
 
 @app.route('/archive')
 def archive():
