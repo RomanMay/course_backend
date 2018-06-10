@@ -31,6 +31,9 @@ def load_user(user_id):
 def index():
     return render_template('index.html')
 
+@app.route('/user_abonements')
+def user_abonements():
+    return render_template('user_abonements.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
