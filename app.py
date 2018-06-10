@@ -6,23 +6,16 @@ from flask import Flask, request, render_template, redirect
 from flask_login import LoginManager, login_required, current_user, logout_user, login_user
 from functools import wraps
 
-
-app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
 login_manager = LoginManager()
-
-app.config['SECRET_KEY'] = 'super-secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-app.config['admins'] = [
-    'kirill',
-    'romanmay'
-]
+app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
+app.config.from_object('config')
 CORS(app)
 
 
 def admin_required(f):
     @wraps(f)
     def decorated(*args,**kwargs):
-        if current_user.username not in app.config['admins']:
+        if current_user.username not in app.config['ADMINS']:
             return 'You are not admin'
         else:
             return f(*args, **kwargs)

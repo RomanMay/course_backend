@@ -1,8 +1,9 @@
 from database import Base
-from sqlalchemy import String, Integer,Boolean, Column, Float
+from sqlalchemy import String, Integer, Column, Float
 from flask_login import UserMixin
 
-class User(UserMixin,Base):
+
+class User(UserMixin, Base):
     __tablename__ = 'user'
 
     def __init__(self, username, password, email, role):
@@ -26,7 +27,6 @@ class Offer(Base):
         self.cost = cost
         self.description = description
         self.capacity = capacity
-
 
     id = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
