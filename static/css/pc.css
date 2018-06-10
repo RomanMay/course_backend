@@ -19,6 +19,7 @@ header{
     top: 0;
     background-position: center;
     background-size: cover;
+    background-color: #fff;
 }
 .grid{
   display: grid;
@@ -47,32 +48,47 @@ header{
 }
 
 .abonm{
-  background-color: #fff;
-  opacity: .5;
+  
   text-align: center;
   margin: 0 auto;
-  
-}
 }
 
 .center{
   text-align: center;
 }
 nav .menu{
-  grid-template-columns: repeat(3,1fr); 
+  grid-template-columns: repeat(4,1fr); 
   
   
+}
+.logo{
+  font-family: Stencil;
+}
+.display{
+  display: inline-block;
+  font-size: 1.5em;
+  padding: 0 3%;
+  font-family: 'Duru Sans', sans-serif; 
 }
 .menu a{
-  background: #fff;
-  opacity: .5;
+  margin-top: 2%;
 }
 .menu a p{
-  text-transform: uppercase;
-  color: #000;
-  font-size: 2em;
+ 
+  color: #000 ;
+  font-size: 1.5em;
   font-family: 'Duru Sans', sans-serif;
   
+}
+  
+
+.icon1 a{
+  text-decoration: none;
+  color: #000;
+ } 
+.icon1{
+ 
+  display: inline-block;
 }
 .menu{
   width: 100%;
@@ -91,7 +107,10 @@ h1{
   font-size: 0.8em;
 }
 .hhh{
-  padding: 2% 2%;
+  padding: 6% 2%;
+}
+.www{
+  margin-top: 20%;
 }
 .personalCaby1 .abonm{
   grid-template-columns: repeat(5,1fr);
@@ -101,7 +120,7 @@ h1{
   padding-top:5%; 
 }
 .photo{
-  padding: 8% 0;
+  padding: 20% 0;
   margin-left: 25%;
 }
 .abonm .photo:nth-child(1){
