@@ -23,7 +23,7 @@ button p{
     font-family: "Open sans";
 
 }
-button{
+.button{
     background-color: rgba(0,0,255,.2);
     border-radius: 3px;
     border: 1px solid black;

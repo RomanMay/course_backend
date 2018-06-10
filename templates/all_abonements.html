@@ -27,6 +27,7 @@
 		<table class="table" border="1">
 			<caption>Все абонементы</caption>
 			<tr>
+				<th>Название</th>
 				<th>Время</th>
 				<th>Описание</th>
 				<th>Цена</th>
@@ -34,13 +35,16 @@
 				<th>Добавить</th>
 				
 			</tr>
+			{% for offer in offers %}
 			<tr>
+				<td class="name">{{offer.name}}</td>
 				<td class="time">12-00</td>
-				<td class="description">Описание абонементажвылофпрзшыгрпж ыфвожщпрзфыщш ьнрвпш рвпзшгр</td>
-				<td class="value">350грн</td>
+				<td class="description">{{offer.description}}</td>
+				<td class="value">{{offer.cost}}</td>
 				<td class="button"><button>удалить</button></td>
 				<td class="button"><button>добавить</button></td>
 			</tr>
+			{% endfor %}
 		</table>
 
 	</section>		

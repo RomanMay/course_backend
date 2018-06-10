@@ -1,14 +1,30 @@
-from forms import RegForm
+from forms import RegForm, LoginForm, OfferForm
 from models import User, Offer, Order
 from flask_cors import CORS
 from database import db_session, init_db
 from flask import Flask, request, render_template, redirect
+from flask_login import LoginManager, login_required, current_user, logout_user, login_user
+from functools import wraps
 
+login_manager = LoginManager()
 app = Flask(__name__, template_folder='templates', static_folder='static', static_url_path='/static')
-
-app.config['SECRET_KEY'] = 'super-secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config.from_object('config')
 CORS(app)
+
+
+def admin_required(f):
+    @wraps(f)
+    def decorated(*args,**kwargs):
+        if current_user.username not in app.config['ADMINS']:
+            return 'You are not admin'
+        else:
+            return f(*args, **kwargs)
+    return decorated
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
 
 
 @app.route('/')
@@ -18,23 +34,31 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = RegForm()
-    data_valid = form.validate()
-    print(data_valid)
-    if data_valid:
-        db_session.add(User(form.username.data, form.password.data, form.email.data, 'user'))
-        db_session.commit()
-        return redirect('/')
-    return render_template('log_in.html', form=form)
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user:
+            login_user(user)
+            return redirect('/personal_room')
+    return render_template('login.html', form=form)
 
 
-@app.route('/add_offer')
+@app.route('/add_offer', methods=['GET', 'POST'])
+@login_required
+@admin_required
 def add_offer():
-    return render_template('add_form.html')
+    form = OfferForm()
+    if form.validate_on_submit():
+        offer = Offer.query.filter_by(name=form.name.data).first()
+        if not offer:
+            db_session.add(Offer(form.name.data, form.cost.data, form.description.data, form.capacity.data ))
+            db_session.commit()
+        return redirect('/all_abonements')
+    return render_template('add_offer.html', form=form)
 
 @app.route('/all_abonements')
 def all_abonements():
-    return render_template('all_abonements.html')
+    return render_template('all_abonements.html', offers=Offer.query.all())
 
 @app.route('/archive')
 def archive():
@@ -53,18 +77,42 @@ def accepted():
     return render_template('accepted.html')
 
 @app.route('/personal_room')
+@login_required
 def personal_room():
     return render_template('pc1.html')
 
 
-@app.route('/reg', methods=['GET', 'POST'])
+@app.route('/registration', methods=['GET', 'POST'])
 def register():
     form = RegForm()
     if form.validate_on_submit():
         db_session.add(User(form.username.data, form.password.data, form.email.data, 'user'))
         db_session.commit()
         return redirect('/')
-    return render_template('log_in.html', form=form)
+    return render_template('registration.html', form=form)
+
+
+@app.route('/check_user', methods=['GET'])
+@login_required
+def check_user():
+    return "Hello user: " + str(current_user.username) + " : " + str(current_user.email)
+
+
+@app.route('/check_user_by_id', methods=['GET'])
+def check_user_by_id():
+    username = request.args.get('username')
+    return str(User.query.get(username))
+
+
+@app.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    user = current_user
+    user.authenticated = False
+    db_session.add(user)
+    db_session.commit()
+    logout_user()
+    return redirect('/')
 
 
 @app.teardown_appcontext
@@ -74,4 +122,5 @@ def shutdown_session(exception=None):
 
 if __name__ == "__main__":
     init_db()
+    login_manager.init_app(app)
     app.run(host="0.0.0.0", debug=True)
