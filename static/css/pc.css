@@ -27,9 +27,7 @@ header{
 .center{
   text-align: center;
 }
-.logo{
-  padding-bottom: 3%;
-}
+
 .heightContainer {
     min-height: 100vh;
     box-sizing: border-box;
@@ -61,9 +59,7 @@ nav .menu{
   
   
 }
-.logo{
-  font-family: Stencil;
-}
+
 .body{
   position: relative;
     top: 0;
@@ -80,14 +76,16 @@ nav .menu{
   padding: 0 3%;
   font-family: 'Duru Sans', sans-serif; 
 }
-.menu a{
+nav .menu a{
   margin-top: 2%;
+  text-decoration: none;
 }
 .menu a p{
- 
   color: #000 ;
-  font-size: 1.5em;
-  font-family: 'Duru Sans', sans-serif;
+  font-size: 4em;
+  font-family: 'Allerta Stencil', sans-serif;
+  text-decoration: none;
+
   
 }
   
@@ -121,12 +119,14 @@ h1{
   padding: 1% 0;
 }
 .hhh{
-  padding: 3% 4%;
+  padding: 3% 3%;
 }
 .www{
-  margin-top: 25%;
-   font-family: "Open Sans";
+  margin: 30% 3% 0 0;
+  font-family: "Open Sans";
   font-size: 0.5em;
+  
+
 }
 .personalCaby1 .abonm{
   grid-template-columns: repeat(4,1fr);
@@ -135,8 +135,12 @@ h1{
 .abonm{
   padding-top:5%; 
 }
+.nav a{
+  color: #000;
+}
 .nav li{
   font-size: 2em;
+
 }
 .photo{
   padding: 15% 0;

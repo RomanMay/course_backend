@@ -1,0 +1,44 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.body{
+    position: relative;
+    top: 0;
+    background-position: center;
+    background-size: cover;
+
+}
+.table{
+	text-align: center;
+	margin: 0 auto;
+	width: 80%;
+	font-family: "Open sans";
+	color: #000;
+	
+}
+caption{
+    font: 3em "Open sans";
+}
+.description{
+	width: 40%;
+}
+.table{
+	text-align: center;
+	margin: auto;
+	width: 80%;
+	font-family: "Open sans";
+	color: #000;
+	
+}
+button{
+    background-color: rgba(0,0,255,.2);
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow:0 12px 15px 0 rgba(163,113,123,.24),0 17px 50px 0 rgba(0,0,255,.19);
+
+}
+button:hover {
+    background-color: rgba(0,0,255,.4);
+    cursor: pointer;
+}

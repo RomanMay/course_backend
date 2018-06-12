@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>addForm</title>
+	<link rel="stylesheet" href="static/css/archive.css">
+	<link rel="stylesheet" href="static/css/add_form.css">
+	<link rel="stylesheet" href="static/css/menu.css">
+	<link rel="stylesheet" href="static/css/all_abonements.css">
+	<link rel="stylesheet" href="static/css/new.css">
+	<link rel="stylesheet" href="static/css/accepted.css">
+	<link rel="stylesheet" href="static/css/rejected.css">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Unica+One" rel="stylesheet">
+</head>
+<body class="body" style="background-image: url(static/img/back_for_add-bright.jpg);">
+		<div class="tab">
+  
+  <button class="tablinks" onclick="openCity(event, 'all_offers')">Все заказы</button>
+  <button class="tablinks" onclick="openCity(event, 'accepted')">Принятые</button>
+  <button class="tablinks" onclick="openCity(event, 'rejected')" id="defaultOpen">Отклоненные</button>
+  <button class="tablinks" onclick="openCity(event, 'new')">Новые</button>
+  <button class="tablinks" onclick="openCity(event, 'archieve')">Архив</button>
+</div>
+
+
+<div id="all_offers" class="tabcontent">
+  <h3>Все заказы</h3>
+  <table class="table" border="1">
+			<caption>Все заказы</caption>
+			<tr>
+				<th>Название</th>
+				<th>Время</th>
+				<th>Описание</th>
+				<th>Цена</th>
+				<th>Удалить</th>
+				<th>Добавить</th>
+				
+			</tr>
+			{% for offer in offers %}
+			<tr>
+				<td class="name">{{offer.name}}</td>
+				<td class="time">12-00</td>
+				<td class="description">{{offer.description}}</td>
+				<td class="value">{{offer.cost}}</td>
+				<td class="button"><button>удалить</button></td>
+				<td class="button"><button>добавить</button></td>
+			</tr>
+			{% endfor %}
+		</table>
+</div>
+
+<div id="accepted" class="tabcontent">
+  <h3>Принятые</h3>
+	<table class="table" border="1">
+			<caption>Принятые заказы</caption>
+			<tr>
+				<th>Название</th>
+				<th>Время</th>
+				<th>Описание</th>
+				<th>Цена</th>
+			</tr>
+			<tr>
+				<td class="name">Student</td>
+				<td class="time">12-00</td>
+				<td class="description">blablabla</td>
+				<td class="value">350grn</td>
+			</tr>
+		</table>
+</div>
+
+<div id="rejected" class="tabcontent">
+  <h3>Отклоненные</h3>
+	<table class="table" border="1">
+			<caption>Отклоненные абонементы</caption>
+			<tr>
+				<th>Название</th>
+				<th>Время</th>
+				<th>Описание</th>
+				<th>Цена</th>
+			</tr>
+			<tr>
+				<td class="name">Student</td>
+				<td class="time">12-00</td>
+				<td class="description">blablabla</td>
+				<td class="value">350grn</td>
+			</tr>
+		</table>
+</div>
+
+<div id="new" class="tabcontent">
+  <h3>Новые</h3>
+  <table class="table" border="1">
+			<caption>Новые абонементы</caption>
+			<tr>
+				<th>Название</th>
+				<th>Время</th>
+				<th>Описание</th>
+				<th>Цена</th>
+				<th>Действия</th>
+			</tr>
+			<tr>
+				<td class="name">Student</td>
+				<td class="time">12-00</td>
+				<td class="description">blablabla</td>
+				<td class="value">350grn</td>
+				<td class="button"><button>принять</button>
+				<button>отклонить</button></td>
+			</tr>
+		</table>
+</div>
+
+<div id="archieve" class="tabcontent">
+  <h3>Архив</h3>
+  
+</div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>

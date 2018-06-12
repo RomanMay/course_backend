@@ -3,5 +3,6 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///database.db'
 ADMINS = [
     'kirill',
     'romanmay',
-    'Roman'
+    'Roman',
+    'roma'
 ]

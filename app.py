@@ -59,25 +59,15 @@ def add_offer():
         return redirect('/all_abonements')
     return render_template('add_offer.html', form=form)
 
-@app.route('/all_abonements')
-def all_abonements():
-    return render_template('all_abonements.html', offers=Offer.query.all())
-
-@app.route('/archive')
-def archive():
-    return render_template('archive.html')
+@app.route('/admin_panel')
+def admin_panel():
+    return render_template('admin_panel.html')
 
 @app.route('/new_abonements')
 def new_abonements():
     return render_template('new.html')
 
-@app.route('/rejected')
-def rejected():
-    return render_template('rejected.html')
 
-@app.route('/accepted')
-def accepted():
-    return render_template('accepted.html')
 
 @app.route('/personal_room')
 @login_required
