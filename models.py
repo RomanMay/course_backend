@@ -6,17 +6,17 @@ from flask_login import UserMixin
 class User(UserMixin, Base):
     __tablename__ = 'user'
 
-    def __init__(self, username, password, email, role):
+    def __init__(self, username, hash, email, role):
         self.username = username
         self.email = email
-        self.password = password
+        self.hash = hash
         self.role = role
 
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
     role = Column(String, default="user")
     email = Column(String, unique=True)
-    password = Column(String)
+    hash = Column(String)
 
 
 class Offer(Base):
