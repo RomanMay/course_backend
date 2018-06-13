@@ -50,15 +50,15 @@ def add_offer():
         if not offer:
             db_session.add(Offer(form.name.data, form.cost.data, form.description.data, form.capacity.data))
             db_session.commit()
-        return redirect('/all_offers')
+        return redirect('/admin_panel')
     return render_template('admin/add_offer.html', form=form)
 
 
-@admin.route('/all_offers')
+@admin.route('/admin_panel')
 @login_required
 @admin_required
 def all_offers():
-    return render_template('admin/all_offers.html', offers=Offer.query.all())
+    return render_template('admin/admin_panel.html', offers=Offer.query.all())
 
 
 @admin.route('/archive')
