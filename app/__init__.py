@@ -17,12 +17,14 @@ app.config['ADMINS'] = [
 
 app.register_blueprint(main)
 app.register_blueprint(user)
+CORS(app)
 
 login_manager = LoginManager()
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
-CORS(app)
 
 
 @app.teardown_appcontext
