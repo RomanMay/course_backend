@@ -2,7 +2,7 @@ from flask import redirect
 from flask import Blueprint
 from flask import render_template
 
-from app.models import User
+from app.models import User, Offer
 from app.database import db_session
 
 from flask_login import login_required, current_user, logout_user
@@ -13,7 +13,8 @@ user = Blueprint('user', __name__, template_folder='templates', static_folder='s
 @user.route('/personal_room')
 @login_required
 def personal_room():
-    return render_template('user/personal_room.html')
+    offers = Offer.query.all()
+    return render_template('user/personal_room.html', offers = offers)
 
 
 @user.route('/add_order', methods=['POST'])
