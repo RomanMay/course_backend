@@ -1,8 +1,9 @@
 .features{
-    width: 15%;
     float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 20%;
     height: 100vh;
-    margin: 0 auto;
 }
 nav .menu{
 	grid-template-rows: repeat(6,1fr);
@@ -17,10 +18,7 @@ nav{
 	height: 100vh;
     top: 0;
     left: 0;
-    z-index: 100;
-	background-color: rgba(113,113,123,.7);
     box-sizing: border-box;
-    padding: 4% 0;
 
 }
 nav .menu a{
@@ -31,10 +29,11 @@ nav .menu a{
     font-weight: 600;
     text-decoration: none;
 
+
 }
-nav .menu a p{
-	line-height: 100%;
-}
+
 .curent{
 	color: rgba(0,0,255,.4);
 }
+
+

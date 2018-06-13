@@ -31,3 +31,6 @@ button:hover {
     background-color: rgba(0,0,255,.4);
     cursor: pointer;
 }
+caption{
+    font: 3em "Open sans";
+}
