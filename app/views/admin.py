@@ -51,18 +51,18 @@ def add_offer():
             db_session.add(Offer(form.name.data, form.cost.data, form.description.data, form.capacity.data))
             db_session.commit()
         return redirect('/all_offers')
-    return render_template('add_offer.html', form=form)
+    return render_template('admin/add_offer.html', form=form)
 
 
 @admin.route('/all_offers')
 @login_required
 @admin_required
 def all_offers():
-    return render_template('all_offers.html', offers=Offer.query.all())
+    return render_template('admin/all_offers.html', offers=Offer.query.all())
 
 
 @admin.route('/archive')
 @login_required
 @admin_required
 def archive():
-    return render_template('archive.html', orders=Order.query.all())
+    return render_template('admin/archive.html', orders=Order.query.all())
