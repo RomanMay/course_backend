@@ -14,7 +14,8 @@ app.config['SECRET_KEY'] = 'super-secret'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['ADMINS'] = [
     'kirill',
-    'romanmay'
+    'romanmay',
+    'roma'
 ]
 
 app.register_blueprint(main)
