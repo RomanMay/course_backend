@@ -1,4 +1,4 @@
-from database import Base
+from app.database import Base
 from sqlalchemy import String, Integer, Column, Float
 from flask_login import UserMixin
 
