@@ -1,11 +1,13 @@
 from flask import Flask
+from flask_cors import CORS
+from flask_login import LoginManager
 
 from app.models import User
+from app.database import db_session, init_db
+
 from app.views.main import main
 from app.views.user import user
-from flask_cors import CORS
-from app.database import db_session, init_db
-from flask_login import LoginManager
+from app.views.admin import admin
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
@@ -17,6 +19,7 @@ app.config['ADMINS'] = [
 
 app.register_blueprint(main)
 app.register_blueprint(user)
+app.register_blueprint(admin)
 CORS(app)
 
 login_manager = LoginManager()

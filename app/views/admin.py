@@ -16,7 +16,6 @@ from flask import current_app
 admin = Blueprint('admin', __name__, template_folder='templates', static_folder='static', static_url_path='/static')
 
 
-@login_required
 def admin_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -29,6 +28,7 @@ def admin_required(f):
 
 
 @admin.route('/delete_offer', methods=['POST'])
+@login_required
 @admin_required
 def delete_offer():
     offer_name = request.form['offer_name']
@@ -41,6 +41,7 @@ def delete_offer():
 
 
 @admin.route('/add_offer', methods=['GET', 'POST'])
+@login_required
 @admin_required
 def add_offer():
     form = OfferForm()
@@ -54,12 +55,14 @@ def add_offer():
 
 
 @admin.route('/all_offers')
+@login_required
 @admin_required
 def all_offers():
     return render_template('all_offers.html', offers=Offer.query.all())
 
 
 @admin.route('/archive')
+@login_required
 @admin_required
 def archive():
     return render_template('archive.html', orders=Order.query.all())

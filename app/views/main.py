@@ -19,7 +19,7 @@ main = Blueprint('main', __name__, template_folder='templates', static_folder='s
 @main.route('/')
 @main.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('main/index.html')
 
 
 @main.route('/registration', methods=['GET', 'POST'])
@@ -29,7 +29,7 @@ def register():
         db_session.add(User(form.username.data, generate_password_hash(form.password.data), form.email.data, 'user'))
         db_session.commit()
         return redirect('/login')
-    return render_template('registration.html', form=form)
+    return render_template('main/registration.html', form=form)
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -41,4 +41,4 @@ def login():
             if check_password_hash(user.hash, form.password.data):
                 login_user(user)
                 return redirect('/personal_room')
-    return render_template('login.html', form=form)
+    return render_template('main/login.html', form=form)

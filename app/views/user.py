@@ -13,7 +13,7 @@ user = Blueprint('user', __name__, template_folder='templates', static_folder='s
 @user.route('/personal_room')
 @login_required
 def personal_room():
-    return render_template('personal_room.html')
+    return render_template('user/personal_room.html')
 
 
 @user.route('/add_order', methods=['POST'])
