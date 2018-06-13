@@ -15,19 +15,42 @@
 	width: 80%;
 	font-family: "Open sans";
 	color: #000;
+    border-collapse: collapse;
 	
+}
+caption {
+  padding: 10px;
+  
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+}
+th {
+  border-bottom: 3px solid #B9B29F;
+  padding: 10px;
+  text-align: center;
+}
+td {
+  padding: 10px;
+}
+tr:nth-child(odd) {
+  background: white;
+}
+tr:nth-child(even) {
+  background: #E8E6D1;
 }
 .description{
 	width: 40%;
 }
-button{
-    background-color: rgba(0,0,255,.2);
-    border-radius: 3px;
-    border: 1px solid black;
-    box-shadow:0 12px 15px 0 rgba(163,113,123,.24),0 17px 50px 0 rgba(0,0,255,.19);
+.table button{
+    display: inline-block;
+  padding: 5px 10px;
+  background: rgb(0,0,255, .2);
+  box-shadow: 2px 2px 0 0 #0c10a0;
+  position: relative;
 
 }
-button:hover {
+.table button:hover {
     background-color: rgba(0,0,255,.4);
     cursor: pointer;
 }

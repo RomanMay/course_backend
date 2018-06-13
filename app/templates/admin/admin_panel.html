@@ -2,9 +2,8 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>addForm</title>
+	<title>Admin-panel</title>
 	<link rel="stylesheet" href="static/css/archive.css">
-	<link rel="stylesheet" href="static/css/add_form.css">
 	<link rel="stylesheet" href="static/css/menu.css">
 	<link rel="stylesheet" href="static/css/all_abonements.css">
 	<link rel="stylesheet" href="static/css/admin-panel.css">
@@ -25,7 +24,7 @@
 
 
 <div id="all_offers" class="tabcontent">
-  <h3>Все заказы</h3>
+
   <table class="table" border="1">
 			<caption>Все заказы</caption>
 			<tr>
@@ -33,8 +32,8 @@
 				<th>Время</th>
 				<th>Описание</th>
 				<th>Цена</th>
-				<th>Удалить</th>
-				<th>Добавить</th>
+				<th>Действие</th>
+				
 				
 			</tr>
 			{% for offer in offers %}
@@ -43,53 +42,52 @@
 				<td class="time">12-00</td>
 				<td class="description">{{offer.description}}</td>
 				<td class="value">{{offer.cost}}</td>
-				<td class="button"><button>удалить</button></td>
-				<td class="button"><button>добавить</button></td>
+				<td class="button"><button>удалить</button>
+				<button>добавить</button></td>
 			</tr>
 			{% endfor %}
 		</table>
 </div>
 
 <div id="accepted" class="tabcontent">
-  <h3>Принятые</h3>
 	<table class="table" border="1">
 			<caption>Принятые заказы</caption>
 			<tr>
-				<th>Название</th>
-				<th>Время</th>
-				<th>Описание</th>
+				<th>Имя пользователя</th>
+				<th>Название абонемента</th>
 				<th>Цена</th>
+				<th>Действие</th>
 			</tr>
 			<tr>
 				<td class="name">Student</td>
 				<td class="time">12-00</td>
-				<td class="description">blablabla</td>
 				<td class="value">350grn</td>
+				<td class="button"><button>отклонить</button></td>
 			</tr>
 		</table>
 </div>
 
 <div id="rejected" class="tabcontent">
-  <h3>Отклоненные</h3>
 	<table class="table" border="1">
-			<caption>Отклоненные абонементы</caption>
+			<caption>Отклоненные заказы</caption>
 			<tr>
-				<th>Название</th>
-				<th>Время</th>
+				<th>Имя пользователя</th>
+				<th>Название абонемента</th>
 				<th>Описание</th>
 				<th>Цена</th>
+				<th>Действие</th>
 			</tr>
 			<tr>
 				<td class="name">Student</td>
 				<td class="time">12-00</td>
 				<td class="description">blablabla</td>
 				<td class="value">350grn</td>
+				<td class="button"><button>принять</button>
 			</tr>
 		</table>
 </div>
 
 <div id="new" class="tabcontent">
-  <h3>Новые</h3>
   <table class="table" border="1">
 			<caption>Новые абонементы</caption>
 			<tr>
@@ -111,7 +109,7 @@
 </div>
 
 <div id="archieve" class="tabcontent">
-  <h3>Архив</h3>
+
   
 </div>
 
