@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body class="body" style="background-image: url(static/img/back_log_in.png" );>
 <!--Logo and logout-->
@@ -24,10 +24,12 @@
         <div class="menu grid">
             <a href="/"><p class="logo">POWER GUM</p></a>
             <div class="userpannel">
-                <p class="display">Имя пользователя</p>
-                <div class="icon1"><a href="">
-                    <ion-icon name="log-in" size="large">
-                </a></ion-icon></div>
+                <p class="display">{{user.username}}</p>
+                <div class="icon1">
+                    <a href="">
+                        <ion-icon name="log-in" size="large"></ion-icon>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -38,12 +40,11 @@
 <div class="container">
     <!--Menu-->
     <ul class="nav nav-tabs">
-
         <li class="active"><a data-toggle="tab" href="#home">Услуги</a></li>
         <li><a data-toggle="tab" href="#menu1">Мои абонементы</a></li>
-        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-
+        <li><a data-toggle="tab" href="#menu2">Активные</a></li>
+        <li><a data-toggle="tab" href="#menu3">Неподтвержденные</a></li>
+        <li><a data-toggle="tab" href="#menu4">Отклоненные</a></li>
     </ul>
 
     <div class="tab-content">
@@ -52,11 +53,11 @@
             <p>Здесь вы можете заказать абонемент</p>
             <div class="abonm grid center">
                 {% for offer in offers %}
-                    <img class="photo" src="static/img/06-00.png" alt="">
-                    <h1 class="hhh">{{offer.name}}<p>{{offer.description}}</p></h1>
-                    <button class="www">
-                        Заказать
-                    </button>
+                <img class="photo" src="static/img/06-00.png" alt="">
+                <h1 class="hhh">{{offer.name}}<p>{{offer.description}}</p></h1>
+                <button class="www" onclick="Order({{ offer.id }});">
+                    Заказать
+                </button>
                 {% endfor %}
             </div>
 
@@ -65,27 +66,86 @@
         <div id="menu1" class="tab-pane fade">
             <p>Здесь Вы можете просматривать ваши абонементы</p>
             <div class="abonm grid center">
-                <img class="photo" src="static/img/06-00.png" alt="">
-                <h1 class="hhh">Утренний <p>Очень удобен для фанатов утренней пробежки.
-                    Не прозевайте свое спортивное утро.</p></h1>
-                <button class="www">
-                    Заказать
-                </button>
+                {% for abonnement in my_abonnements %}
+                    <img class="photo" src="static/img/06-00.png" alt="">
+                    <h1 class="hhh">{{abonnement['offer'].name}}<p>{{abonnement['offer'].description}} Status: {{abonnement['status']}} </p></h1>
+                    <button class="www" onclick="Cancel({{ abonnement['offer'].id }});">
+                        Отменить
+                    </button>
+                {% endfor %}
             </div>
         </div>
         <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                rem aperiam.</p>
+           <p>Здесь Вы можете просматривать ваши активные абонементы</p>
+            <div class="abonm grid center">
+                {% for abonnement in my_abonnements %}
+                    {% if abonnement['status'] ==  'accepted' %}
+                        <img class="photo" src="static/img/06-00.png" alt="">
+                        <h1 class="hhh">{{abonnement['offer'].name}}<p>{{abonnement['offer'].description}} Status: {{abonnement['status']}} </p></h1>
+                        <button class="www" onclick="Cancel({{ abonnement['offer'].id }});">
+                            Отменить
+                        </button>
+                    {% endif %},
+                {% endfor %}
+            </div>
         </div>
         <div id="menu3" class="tab-pane fade">
-            <h3>Menu 3</h3>
-            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <p> Запросы </p>
+            <div class="abonm grid center">
+                {% for abonnement in my_abonnements %}
+                    {% if abonnement['status'] ==  'pending' %}
+                        <img class="photo" src="static/img/06-00.png" alt="">
+                        <h1 class="hhh">{{abonnement['offer'].name}}<p>{{abonnement['offer'].description}} Status: {{abonnement['status']}} </p></h1>
+                        <button class="www" onclick="Cancel({{ abonnement['offer'].id }});">
+                            Отменить
+                        </button>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="menu4" class="tab-pane fade">
+            <p> Отклоненные </p>
+            <div class="abonm grid center">
+                {% for abonnement in my_abonnements %}
+                    {% if abonnement['status'] ==  'rejected' %}
+                        <img class="photo" src="static/img/06-00.png" alt="">
+                        <h1 class="hhh">{{abonnement['offer'].name}}<p>{{abonnement['offer'].description}} Status: {{abonnement['status']}} </p></h1>
+                        <button class="www" onclick="Cancel({{ abonnement['offer'].id }});">
+                            Отменить
+                        </button>
+                    {% endif %}
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
 
 
 <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
+<script>
+    function Order(offerid) {
+        let data = new FormData();
+        data.append('offer_id', offerid);
+        axios.post('/add_order', data)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+
+    function Cancel(offer_id) {
+        let data = new FormData();
+        data.append('offer_id', offer_id);
+        axios.post('/cancel_order', data)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
+</script>
 
 </body>

@@ -1,137 +1,163 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-	<meta charset="UTF-8">
-	<title>addForm</title>
-	<link rel="stylesheet" href="static/css/archive.css">
-	<link rel="stylesheet" href="static/css/add_form.css">
-	<link rel="stylesheet" href="static/css/menu.css">
-	<link rel="stylesheet" href="static/css/all_abonements.css">
-	<link rel="stylesheet" href="static/css/admin-panel.css">
-	<link rel="stylesheet" href="static/css/new.css">
-	<link rel="stylesheet" href="static/css/accepted.css">
-	<link rel="stylesheet" href="static/css/rejected.css">
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Unica+One" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>addForm</title>
+    <link rel="stylesheet" href="static/css/archive.css">
+    <link rel="stylesheet" href="static/css/add_form.css">
+    <link rel="stylesheet" href="static/css/menu.css">
+    <link rel="stylesheet" href="static/css/all_abonements.css">
+    <link rel="stylesheet" href="static/css/admin-panel.css">
+    <link rel="stylesheet" href="static/css/new.css">
+    <link rel="stylesheet" href="static/css/accepted.css">
+    <link rel="stylesheet" href="static/css/rejected.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Unica+One" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body class="body" style="background-image: url(static/img/back_for_add-bright.jpg);">
-		<div class="tab">
-  
-  <button class="tablinks" onclick="openCity(event, 'all_offers')">Все заказы</button>
-  <button class="tablinks" onclick="openCity(event, 'accepted')">Принятые</button>
-  <button class="tablinks" onclick="openCity(event, 'rejected')" id="defaultOpen">Отклоненные</button>
-  <button class="tablinks" onclick="openCity(event, 'new')">Новые</button>
-  <button class="tablinks" onclick="openCity(event, 'archieve')">Архив</button>
+<div class="tab">
+
+    <button class="tablinks" onclick="openCity(event, 'all_offers')">Все заказы</button>
+    <button class="tablinks" onclick="openCity(event, 'accepted')">Принятые</button>
+    <button class="tablinks" onclick="openCity(event, 'rejected')" id="defaultOpen">Отклоненные</button>
+    <button class="tablinks" onclick="openCity(event, 'new')">Новые</button>
 </div>
 
 
 <div id="all_offers" class="tabcontent">
-  <h3>Все заказы</h3>
-  <table class="table" border="1">
-			<caption>Все заказы</caption>
-			<tr>
-				<th>Название</th>
-				<th>Время</th>
-				<th>Описание</th>
-				<th>Цена</th>
-				<th>Удалить</th>
-				<th>Добавить</th>
-				
-			</tr>
-			{% for offer in offers %}
-			<tr>
-				<td class="name">{{offer.name}}</td>
-				<td class="time">12-00</td>
-				<td class="description">{{offer.description}}</td>
-				<td class="value">{{offer.cost}}</td>
-				<td class="button"><button>удалить</button></td>
-				<td class="button"><button>добавить</button></td>
-			</tr>
-			{% endfor %}
-		</table>
+    <h3>Все заказы</h3>
+    <table class="table" border="1">
+        <caption>Все заказы</caption>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Название абонемента</th>
+            <th>Действия</th>
+        </tr>
+        {% for order in orders %}
+        <tr id="{{order.id}}">
+            <td class="name">{{order['user'].username}}</td>
+            <td class="time">{{order['offer'].name}}</td>
+            <td class="button">
+                <button onclick="Confirm({{order['order'].id}});">Принять</button>
+                <button onclick="Cancel({{order['order'].id}});">Отклонить</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 <div id="accepted" class="tabcontent">
-  <h3>Принятые</h3>
-	<table class="table" border="1">
-			<caption>Принятые заказы</caption>
-			<tr>
-				<th>Название</th>
-				<th>Время</th>
-				<th>Описание</th>
-				<th>Цена</th>
-			</tr>
-			<tr>
-				<td class="name">Student</td>
-				<td class="time">12-00</td>
-				<td class="description">blablabla</td>
-				<td class="value">350grn</td>
-			</tr>
-		</table>
+    <h3>Принятые</h3>
+    <table class="table" border="1">
+        <caption>Принятые заказы</caption>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Название абонемента</th>
+            <th>Действия</th>
+        </tr>
+        {% for order in orders %}
+            {% if order['status'] == 'accepted' %}
+                <tr id="{{order.id}}_accepted">
+                    <td class="name">{{order['user'].username}}</td>
+                    <td class="time">{{order['offer'].name}}</td>
+                    <td class="button">
+                        <button onclick="Cancel({{order['order'].id}});">Отклонить</button>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
 </div>
 
 <div id="rejected" class="tabcontent">
-  <h3>Отклоненные</h3>
-	<table class="table" border="1">
-			<caption>Отклоненные абонементы</caption>
-			<tr>
-				<th>Название</th>
-				<th>Время</th>
-				<th>Описание</th>
-				<th>Цена</th>
-			</tr>
-			<tr>
-				<td class="name">Student</td>
-				<td class="time">12-00</td>
-				<td class="description">blablabla</td>
-				<td class="value">350grn</td>
-			</tr>
-		</table>
+    <h3>Отклоненные</h3>
+    <table class="table" border="1">
+        <caption>Отклоненные заказы</caption>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Название абонемента</th>
+            <th>Действия</th>
+        </tr>
+        {% for order in orders %}
+            {% if order['status'] == 'rejected' %}
+                <tr id="{{order.id}}_rejected">
+                    <td class="name">{{order['user'].username}}</td>
+                    <td class="time">{{order['offer'].name}}</td>
+                    <td class="button">
+                        <button onclick="Confirm({{order['order'].id}});">Принять</button>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
 </div>
 
 <div id="new" class="tabcontent">
-  <h3>Новые</h3>
-  <table class="table" border="1">
-			<caption>Новые абонементы</caption>
-			<tr>
-				<th>Название</th>
-				<th>Время</th>
-				<th>Описание</th>
-				<th>Цена</th>
-				<th>Действия</th>
-			</tr>
-			<tr>
-				<td class="name">Student</td>
-				<td class="time">12-00</td>
-				<td class="description">blablabla</td>
-				<td class="value">350grn</td>
-				<td class="button"><button>принять</button>
-				<button>отклонить</button></td>
-			</tr>
-		</table>
-</div>
-
-<div id="archieve" class="tabcontent">
-  <h3>Архив</h3>
-  
+    <table class="table" border="1">
+        <caption>Новые заказы</caption>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Название абонемента</th>
+            <th>Действия</th>
+        </tr>
+        {% for order in orders %}
+            {% if order['status'] == 'pending' %}
+                <tr id="{{order.id}}_pending">
+                    <td class="name">{{order['user'].username}}</td>
+                    <td class="time">{{order['offer'].name}}</td>
+                    <td class="button">
+                        <button onclick="Confirm({{order['order'].id}});">Принять</button>
+                        <button onclick="Cancel({{order['order'].id}});">Отклонить</button>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
 </div>
 
 <script>
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
+	function Confirm(order_id) {
+		let data = new FormData();
+        data.append('order_id', order_id);
+        axios.post('/confirm_order', data)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+	}
+
+	function Cancel(order_id) {
+		let data = new FormData();
+        data.append('order_id', order_id);
+        axios.post('/reject_order', data)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+	}
+
+	function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+
 </script>
 </body>
 </html>

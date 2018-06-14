@@ -6,7 +6,7 @@ from flask import redirect, request
 from flask import Blueprint
 from flask import render_template
 
-from app.models import Offer, Order
+from app.models import Offer, Order, User
 from app.database import db_session
 
 from flask_login import login_required, current_user
@@ -40,6 +40,42 @@ def delete_offer():
     return 'Offer does not exist.'
 
 
+@admin.route('/confirm_order', methods=['POST'])
+@login_required
+@admin_required
+def confirm_order():
+    order_id = request.form['order_id']
+    order = Order.query.filter_by(id=order_id).first()
+    if not order:
+        return 'Order does not exist.'
+    if order.status == 'canceled':
+        return 'Error. User not want this order'
+    if order.status == 'accepted':
+        return 'Error. Order already accepted'
+    order.status = 'accepted'
+    db_session.add(order)
+    db_session.commit()
+    return 'ok'
+
+
+@admin.route('/reject_order', methods=['POST'])
+@login_required
+@admin_required
+def reject_order():
+    order_id = request.form['order_id']
+    order = Order.query.filter_by(id=order_id).first()
+    if not order:
+        return 'Order does not exist.'
+    if order.status == 'canceled':
+        return 'Error. User not want this order'
+    if order.status == 'rejected':
+        return 'Error. Order already rejected'
+    order.status = 'rejected'
+    db_session.add(order)
+    db_session.commit()
+    return 'ok'
+
+
 @admin.route('/add_offer', methods=['GET', 'POST'])
 @login_required
 @admin_required
@@ -57,8 +93,17 @@ def add_offer():
 @admin.route('/admin_panel')
 @login_required
 @admin_required
-def all_offers():
-    return render_template('admin/admin_panel.html', offers=Offer.query.all())
+def admin_panel():
+    all_orders = Order.query.all()
+    res = []
+    for order in all_orders:
+        res.append({
+            'user': User.query.filter_by(id=order.user_id).first(),
+            'order': order,
+            'offer': Offer.query.filter_by(id=order.offer_id).first(),
+            'status': order.status
+        })
+    return render_template('admin/admin_panel.html', offers=Offer.query.all(), orders=res)
 
 
 @admin.route('/archive')
