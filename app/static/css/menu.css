@@ -7,6 +7,15 @@
 }
 nav .menu{
 	grid-template-rows: repeat(6,1fr);
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
 }
 .grid{
 	display: grid;
@@ -15,7 +24,7 @@ nav .menu{
 	text-align: center;
 }
 nav{
-	height: 100vh;
+	
     top: 0;
     left: 0;
     box-sizing: border-box;

@@ -18,7 +18,7 @@ header{
 	position: relative;
     top: 0;
     background-position: center;
-    background-size: cover;
+  
     
 }
 .grid{
@@ -73,8 +73,9 @@ nav .menu{
 .display{
   display: inline-block;
   font-size: 1.5em;
-  padding: 0 3%;
+  padding: 6% 3%;
   font-family: 'Duru Sans', sans-serif; 
+
 }
 nav .menu a{
   margin-top: 2%;
@@ -98,7 +99,7 @@ nav .menu a{
   color: #000;
  } 
 .icon1{
- 
+  
   display: inline-block;
 }
 .menu{
