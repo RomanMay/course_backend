@@ -11,7 +11,8 @@ from app.views.admin import admin
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = 'postgres://tjlifzjdwsmoqh:068c8662fe033be9c78b98aae83c38c8a9aa17182458e09243a04d59c2745693@ec2-54-235-109-37.compute-1.amazonaws.com:5432/d8a6vl1bqbg0qk'
 app.config['ADMINS'] = [
     'kirill',
     'romanmay',
