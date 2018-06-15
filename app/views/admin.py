@@ -95,15 +95,23 @@ def add_offer():
 @admin_required
 def admin_panel():
     all_orders = Order.query.all()
+    cost = 0
+    ab_name = ""
     res = []
     for order in all_orders:
+        offer = Offer.query.filter_by(id=order.offer_id).first()
+        count_of = Order.query.filter_by(offer_id=offer.id, status='accepted').count()
+        tcost = count_of * offer.cost
         res.append({
             'user': User.query.filter_by(id=order.user_id).first(),
             'order': order,
             'offer': Offer.query.filter_by(id=order.offer_id).first(),
             'status': order.status
         })
-    return render_template('admin/admin_panel.html', offers=Offer.query.all(), orders=res)
+        if tcost > cost:
+            ab_name = offer.name
+            cost = tcost
+    return render_template('admin/admin_panel.html', offers=Offer.query.all(), orders=res, most_ab_name=ab_name, most_ab_cost=cost)
 
 
 @admin.route('/archive')

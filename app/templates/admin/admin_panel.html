@@ -21,6 +21,7 @@
     <button class="tablinks" onclick="openCity(event, 'accepted')">Принятые</button>
     <button class="tablinks" onclick="openCity(event, 'rejected')" id="defaultOpen">Отклоненные</button>
     <button class="tablinks" onclick="openCity(event, 'new')">Новые</button>
+    <button class="tablinks" onclick="openCity(event, 'most_cost')">Статистика</button>
 </div>
 
 
@@ -112,6 +113,20 @@
                 </tr>
             {% endif %}
         {% endfor %}
+    </table>
+</div>
+
+<div id="most_cost" class="tabcontent">
+    <table class="table" border="1">
+        <caption>Самый прибыльный абонемент</caption>
+        <tr>
+            <th>Название</th>
+            <th>Прибыль</th>
+        </tr>
+            <tr id="pending">
+                <td class="name">{{most_ab_name}}</td>
+                <td class="name">{{most_ab_cost}}</td>
+            </tr>
     </table>
 </div>
 
